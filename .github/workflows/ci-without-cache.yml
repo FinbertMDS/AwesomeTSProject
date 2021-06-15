@@ -1,6 +1,8 @@
 name: Daily without cache
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,3 +18,21 @@ jobs:
       run: yarn --frozen-lockfile
     - name: Test
       run: yarn test
+  
+  ##################################
+  ### Run when a schedule failed ###
+  ##################################
+  restart_when_failed:
+    name: Restarts the scheduled run when it failed
+    runs-on: ubuntu-latest
+    if: failure()
+    needs: [build]
+    steps:
+      - name: Retry the workflow
+        run: |
+          curl -i \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.ACTIONS_PAT }}" \
+          https://api.github.com/repos/FinbertMDS/AwesomeTSProject/actions/workflows/8343761/dispatches \
+          -d '{"ref": "${{ github.ref }}" }'
