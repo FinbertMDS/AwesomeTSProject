@@ -34,6 +34,6 @@ jobs:
       with:
         api-level: 29
         target: google_apis
-        emulator-build: 6110076
-        script: "[-z $RAKUTEN_USERNAME ] || [ -z $RAKUTEN_PASSWORD ] || (sleep 60 && yarn test)"
+        emulator-build: 7425822
+        script: "sleep 60 && yarn test"
   
