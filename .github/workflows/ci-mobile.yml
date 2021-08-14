@@ -32,8 +32,8 @@ jobs:
         RAKUTEN_USERNAME: ${{ secrets.RAKUTEN_USERNAME }}
         RAKUTEN_PASSWORD: ${{ secrets.RAKUTEN_PASSWORD }}
       with:
-        api-level: 29
+        api-level: 28
         target: google_apis
         emulator-build: 7425822
-        script: "sleep 60 && yarn test"
+        script: "sleep 30 && yarn test"
   
