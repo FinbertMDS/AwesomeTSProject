@@ -33,7 +33,7 @@ jobs:
     - name: Install dependencies
       run: yarn --frozen-lockfile
     - name: Test
-      run: yarn test
+      run: yarn test2
   
   ##################################
   ### Run when a schedule failed ###
