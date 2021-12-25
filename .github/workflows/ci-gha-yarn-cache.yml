@@ -41,7 +41,7 @@ jobs:
   restart_when_failed:
     name: Restarts the pushed run when it failed
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && failure()
+    if: github.event_name != 'workflow_dispatch' && failure()
     needs: ["build", "build2"]
     steps:
       - name: Retry the workflow
