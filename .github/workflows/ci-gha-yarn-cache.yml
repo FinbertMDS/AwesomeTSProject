@@ -20,6 +20,21 @@ jobs:
     - name: Test
       run: yarn test
   
+  build2:
+    runs-on: ubuntu-latest # Using linux machine
+
+    steps:
+    - uses: actions/checkout@v2 # Checkout the code
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - uses: c-hive/gha-yarn-cache@v1
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+    - name: Test
+      run: yarn test
+  
   ##################################
   ### Run when a schedule failed ###
   ##################################
