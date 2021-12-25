@@ -36,12 +36,12 @@ jobs:
       run: yarn test2
   
   ##################################
-  ### Run when a schedule failed ###
+  ### Run when a push failed ###
   ##################################
   restart_when_failed:
-    name: Restarts the scheduled run when it failed
+    name: Restarts the pushed run when it failed
     runs-on: ubuntu-latest
-    if: failure()
+    if: github.event_name == 'push' && failure()
     needs: ["build", "build2"]
     steps:
       - name: Retry the workflow
